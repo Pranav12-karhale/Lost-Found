@@ -10,7 +10,6 @@
     <img src="https://img.shields.io/badge/Spring_Boot-3.1-brightgreen.svg" alt="Spring Boot" />
     <img src="https://img.shields.io/badge/PostgreSQL-15-blue.svg" alt="PostgreSQL" />
     <img src="https://img.shields.io/badge/Docker-Enabled-blue.svg" alt="Docker" />
-    <img src="https://img.shields.io/badge/Render-Ready-black.svg" alt="Render" />
   </p>
 </div>
 
@@ -22,8 +21,62 @@
 - **📝 Report Lost Items**: Easily submit lost item reports with categories, location tracking, dates, and photo uploads.
 - **🕵️ Report Found Items**: Help the community by logging items you've found, including comprehensive descriptions and images.
 - **🔍 Advanced Search System**: Filter and search through the entire database by keyword, category, or status (Lost/Found).
-- **☁️ Cloud & Docker Ready**: Instantly deployable locally via Docker Compose or on the cloud via Render (Infrastructure as Code).
 - **🎨 Premium UI/UX**: Designed with a sleek, responsive interface featuring modern CSS, glassmorphism, and micro-animations.
+
+---
+
+## 🏗️ System Architecture
+
+The application follows a standard modern, layered **MVC (Model-View-Controller)** architectural pattern.
+
+### 🧩 High-Level Component Diagram
+
+```mermaid
+graph TD
+    Client[📱 Web Browser / Client]
+    
+    subgraph "Spring Boot Application"
+        Controller[🎮 WebController\n(Handles HTTP Requests)]
+        Service[⚙️ FileService\n(Business Logic / Uploads)]
+        Repository[🗄️ JPA Repositories\n(Data Access Layer)]
+        Model[📦 Entity Models\n(LostItem, FoundItem)]
+    end
+    
+    Database[(🐘 PostgreSQL Database)]
+    Disk[(📁 Local File System\nUploads)]
+
+    Client <-->|HTTP GET / POST| Controller
+    Controller -->|Calls| Service
+    Controller -->|Uses| Model
+    Controller <-->|CRUD Operations| Repository
+    
+    Service -->|Saves Images| Disk
+    Repository <-->|Hibernate / SQL| Database
+```
+
+### 🔄 Data Flow: Reporting a Lost Item
+
+```mermaid
+sequenceDiagram
+    participant User as 👤 User
+    participant View as 🖥️ Thymeleaf View
+    participant Controller as 🎮 WebController
+    participant Service as ⚙️ FileService
+    participant Repo as 🗄️ LostItemRepository
+    participant DB as 🐘 Database
+
+    User->>View: Fills out "Report Lost" form & attaches image
+    View->>Controller: POST /report-lost (multipart/form-data)
+    Controller->>Service: saveFile(image)
+    Service-->>Controller: Returns saved image path
+    Controller->>Controller: Creates LostItem Entity
+    Controller->>Repo: save(LostItem)
+    Repo->>DB: INSERT INTO lost_items...
+    DB-->>Repo: Success
+    Repo-->>Controller: Saved Entity
+    Controller-->>View: Redirect to /report-lost
+    View-->>User: Displays updated list of lost items
+```
 
 ---
 
@@ -42,7 +95,6 @@
 **Database & Infrastructure:**
 - PostgreSQL
 - Docker & Docker Compose
-- Render Blueprint (`render.yaml`)
 
 ---
 
@@ -71,23 +123,6 @@ The easiest way to run the application locally is by using **Docker**. This will
    👉 **`http://localhost:8080`**
 
 *(To stop the application, press `Ctrl + C` in the terminal and run `docker-compose down`)*
-
----
-
-## ☁️ Cloud Deployment (Render.com)
-
-This project is fully configured for a **1-Click Cloud Deployment** on [Render](https://render.com) utilizing the free tier. 
-
-1. Create a free account on **Render.com**.
-2. Go to your Dashboard and click **New +** -> **Blueprint**.
-3. Connect your GitHub account and select this repository.
-4. Render will automatically read the `render.yaml` file and provision:
-   - A **Managed PostgreSQL Database**.
-   - A **Web Service** (Spring Boot Docker container).
-   - A persistent disk volume for image uploads.
-5. Click **Apply** and wait for the build to finish!
-
-Your app will be live and accessible via a public URL (e.g., `https://lost-and-found-web.onrender.com`).
 
 ---
 
