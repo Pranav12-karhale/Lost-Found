@@ -33,17 +33,17 @@ The application follows a standard modern, layered **MVC (Model-View-Controller)
 
 ```mermaid
 graph TD
-    Client[📱 Web Browser / Client]
+    Client["📱 Web Browser / Client"]
     
     subgraph "Spring Boot Application"
-        Controller[🎮 WebController\n(Handles HTTP Requests)]
-        Service[⚙️ FileService\n(Business Logic / Uploads)]
-        Repository[🗄️ JPA Repositories\n(Data Access Layer)]
-        Model[📦 Entity Models\n(LostItem, FoundItem)]
+        Controller["🎮 WebController\n(Handles HTTP Requests)"]
+        Service["⚙️ FileService\n(Business Logic / Uploads)"]
+        Repository["🗄️ JPA Repositories\n(Data Access Layer)"]
+        Model["📦 Entity Models\n(LostItem, FoundItem)"]
     end
     
-    Database[(🐘 PostgreSQL Database)]
-    Disk[(📁 Local File System\nUploads)]
+    Database[("🐘 PostgreSQL Database")]
+    Disk[("📁 Local File System\nUploads")]
 
     Client <-->|HTTP GET / POST| Controller
     Controller -->|Calls| Service
@@ -58,12 +58,12 @@ graph TD
 
 ```mermaid
 sequenceDiagram
-    participant User as 👤 User
-    participant View as 🖥️ Thymeleaf View
-    participant Controller as 🎮 WebController
-    participant Service as ⚙️ FileService
-    participant Repo as 🗄️ LostItemRepository
-    participant DB as 🐘 Database
+    participant User as "👤 User"
+    participant View as "🖥️ Thymeleaf View"
+    participant Controller as "🎮 WebController"
+    participant Service as "⚙️ FileService"
+    participant Repo as "🗄️ LostItemRepository"
+    participant DB as "🐘 Database"
 
     User->>View: Fills out "Report Lost" form & attaches image
     View->>Controller: POST /report-lost (multipart/form-data)
