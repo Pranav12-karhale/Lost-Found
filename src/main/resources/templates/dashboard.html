@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Dashboard')}"></head>
+<body>
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="content-pane">
+    <div class="card">
+        <div class="card-header">Statistics Overview</div>
+        <div class="card-body">
+            <div class="stats-grid">
+                <div class="stat-box stat-box-lost">
+                    <div class="stat-title">Lost Items</div>
+                    <div class="stat-number stat-number-lost" th:text="${lostCount}">0</div>
+                </div>
+                <div class="stat-box stat-box-found">
+                    <div class="stat-title">Found Items</div>
+                    <div class="stat-number stat-number-found" th:text="${foundCount}">0</div>
+                </div>
+                <div class="stat-box stat-box-match">
+                    <div class="stat-title">Matched Items</div>
+                    <div class="stat-number stat-number-match" th:text="${matchedCount}">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

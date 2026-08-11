@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Report Lost Item')}"></head>
+<body>
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="content-pane">
+    <div class="card">
+        <div class="card-header">Report Lost Item</div>
+        <div class="card-body">
+            <form action="/report-lost" method="post" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Item Name:</label>
+                        <input type="text" name="itemName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category:</label>
+                        <select name="category" class="form-control" required>
+                            <option value="">Select category...</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Jewelry">Jewelry</option>
+                            <option value="Bags">Bags</option>
+                            <option value="Books">Books</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Location:</label>
+                        <input type="text" name="location" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Lost Date:</label>
+                        <input type="date" name="lostDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Color:</label>
+                        <input type="text" name="color" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Brand:</label>
+                        <input type="text" name="brand" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <textarea name="description" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Photo:</label>
+                        <input type="file" name="image" class="form-control" accept="image/*">
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button type="reset" class="button">Clear</button>
+                    <button type="submit" class="button button-primary">Report Lost</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">My Lost Items</div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Item Name</th>
+                        <th>Category</th>
+                        <th>Location</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${lostItems.empty}">
+                        <td colspan="6" style="text-align: center; color: var(--text-muted); font-style: italic;">No lost items reported yet.</td>
+                    </tr>
+                    <tr th:each="item : ${lostItems}">
+                        <td th:text="${item.id}"></td>
+                        <td th:text="${item.itemName}"></td>
+                        <td th:text="${item.category}"></td>
+                        <td th:text="${item.location}"></td>
+                        <td th:text="${item.date}"></td>
+                        <td th:text="${item.status}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="dashboardRoot" spacing="20.0" styleClass="content-pane"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.LnF.lostandfound.controller.DashboardController">
+    <TitledPane collapsible="false" text="Statistics">
+        <HBox alignment="CENTER" spacing="20.0">
+            <VBox fx:id="lostItemsBox" styleClass="stat-box, stat-box-lost" HBox.hgrow="ALWAYS">
+                <Label styleClass="stat-title" text="Lost Items" />
+                <Label fx:id="lostItemsCountLabel" styleClass="stat-number, stat-number-lost" text="0" />
+            </VBox>
+            <VBox fx:id="foundItemsBox" styleClass="stat-box, stat-box-found" HBox.hgrow="ALWAYS">
+                <Label styleClass="stat-title" text="Found Items" />
+                <Label fx:id="foundItemsCountLabel" styleClass="stat-number, stat-number-found" text="0" />
+            </VBox>
+            <VBox fx:id="matchesBox" styleClass="stat-box, stat-box-match" HBox.hgrow="ALWAYS">
+                <Label styleClass="stat-title" text="Potential Matches" />
+                <Label fx:id="matchesCountLabel" styleClass="stat-number, stat-number-match" text="0" />
+            </VBox>
+        </HBox>
+    </TitledPane>
+    <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+        <TitledPane collapsible="false" text="Recent Lost Items" HBox.hgrow="ALWAYS">
+            <TableView fx:id="recentLostTable" VBox.vgrow="ALWAYS" prefHeight="400.0">
+            <placeholder>
+                <Label text="No recent lost items to display." />
+            </placeholder>
+                <columns>
+                    <TableColumn fx:id="lostItemCol" prefWidth="150.0" text="Item" />
+                    <TableColumn fx:id="lostCategoryCol" prefWidth="100.0" text="Category" />
+                    <TableColumn fx:id="lostLocationCol" prefWidth="150.0" text="Location" />
+                    <TableColumn fx:id="lostDateCol" prefWidth="100.0" text="Date" />
+                </columns>
+            </TableView>
+        </TitledPane>
+        <TitledPane collapsible="false" text="Recent Found Items" HBox.hgrow="ALWAYS">
+            <TableView fx:id="recentFoundTable" VBox.vgrow="ALWAYS" prefHeight="400.0">
+            <placeholder>
+                <Label text="No recent lost items to display." />
+            </placeholder>
+                <columns>
+                    <TableColumn fx:id="foundItemCol" prefWidth="150.0" text="Item" />
+                    <TableColumn fx:id="foundCategoryCol" prefWidth="100.0" text="Category" />
+                    <TableColumn fx:id="foundLocationCol" prefWidth="150.0" text="Location" />
+                    <TableColumn fx:id="foundDateCol" prefWidth="100.0" text="Date" />
+                </columns>
+            </TableView>
+        </TitledPane>
+    </HBox>
+</VBox>

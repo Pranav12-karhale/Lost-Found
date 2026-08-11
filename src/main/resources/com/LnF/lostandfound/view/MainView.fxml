@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<BorderPane fx:id="mainPane" prefHeight="800.0" prefWidth="1200.0"
+            stylesheets="@../css/styles.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.LnF.lostandfound.controller.MainController">
+    <top>
+        <HBox styleClass="nav-bar">
+            <Label text="Lost &amp; Found"
+                   style="-fx-font-size: 24px; -fx-font-weight: 800; -fx-padding: 0 20px 0 0; -fx-text-fill: linear-gradient(to right, #4f46e5, #ec4899);" />
+            <fx:define>
+                <ToggleGroup fx:id="navGroup" />
+            </fx:define>
+            <ToggleButton fx:id="dashboardButton" onAction="#loadDashboard" text="Dashboard"
+                          toggleGroup="$navGroup" styleClass="nav-button" />
+            <ToggleButton fx:id="reportLostButton" onAction="#loadReportLost" text="Report Lost"
+                          toggleGroup="$navGroup" styleClass="nav-button" />
+            <ToggleButton fx:id="reportFoundButton" onAction="#loadReportFound" text="Report Found"
+                          toggleGroup="$navGroup" styleClass="nav-button" />
+            <ToggleButton fx:id="searchButton" onAction="#loadSearchItems" text="Search Items"
+                          toggleGroup="$navGroup" styleClass="nav-button" />
+            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
+    </top>
+</BorderPane>

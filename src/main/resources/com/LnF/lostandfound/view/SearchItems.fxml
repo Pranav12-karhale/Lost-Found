@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane fx:id="searchRoot" styleClass="content-pane"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.LnF.lostandfound.controller.SearchItemsController">
+
+    <center>
+        <VBox spacing="20.0">
+            <TitledPane collapsible="false" text="Search Items">
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Label text="Search:" />
+                    <TextField fx:id="searchField" prefWidth="250.0" promptText="Item name, description..." />
+                    <Label text="Category:" />
+                    <ComboBox fx:id="categoryBox" prefWidth="150.0" />
+                    <Label text="Type:" />
+                    <ComboBox fx:id="typeBox" prefWidth="100.0" />
+                    <Button onAction="#handleSearch" text="Search" styleClass="button-primary" />
+                    <Button onAction="#handleAdvancedSearch" text="Advanced Search" />
+                </HBox>
+            </TitledPane>
+
+            <TitledPane collapsible="false" text="Search Results" VBox.vgrow="ALWAYS">
+                <TableView fx:id="resultsTable" VBox.vgrow="ALWAYS">
+                    <placeholder>
+                        <Label text="No results found." />
+                    </placeholder>
+                    <columns>
+                        <TableColumn fx:id="colType" text="Type" prefWidth="75.0" />
+                        <TableColumn fx:id="colItemName" text="Item Name" prefWidth="150.0" />
+                        <TableColumn fx:id="colCategory" text="Category" prefWidth="100.0" />
+                        <TableColumn fx:id="colDescription" text="Description" prefWidth="300.0" />
+                        <TableColumn fx:id="colLocation" text="Location" prefWidth="150.0" />
+                        <TableColumn fx:id="colDate" text="Date" prefWidth="100.0" />
+                    </columns>
+                    <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY" /></columnResizePolicy>
+                </TableView>
+            </TitledPane>
+        </VBox>
+    </center>
+
+    <right>
+        <TitledPane collapsible="false" text="Item Photo">
+            <BorderPane.margin>
+                <Insets left="20.0" />
+            </BorderPane.margin>
+            <VBox spacing="10" alignment="TOP_CENTER" prefWidth="250">
+                <padding>
+                    <Insets top="10.0" />
+                </padding>
+                <ImageView fx:id="itemImageView" fitHeight="200" fitWidth="200" preserveRatio="true"
+                           style="-fx-border-color: -fx-border-color; -fx-border-width: 1; -fx-border-radius: 6;" />
+                <Label fx:id="noImageLabel" text="No photo available."
+                       style="-fx-font-style: italic; -fx-text-fill: -fx-text-light;" />
+            </VBox>
+        </TitledPane>
+    </right>
+</BorderPane>

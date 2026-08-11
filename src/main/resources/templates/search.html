@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Search Items')}"></head>
+<body>
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="content-pane">
+    <div class="card">
+        <div class="card-header">Search Items</div>
+        <div class="card-body">
+            <form action="/search" method="get">
+                <div style="display: flex; gap: 15px; align-items: flex-end;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Search Term:</label>
+                        <input type="text" name="searchTerm" class="form-control" th:value="${param.searchTerm}" placeholder="Item name, description...">
+                    </div>
+                    <div class="form-group">
+                        <label>Category:</label>
+                        <select name="category" class="form-control">
+                            <option value="All">All Categories</option>
+                            <option value="Electronics" th:selected="${param.category == 'Electronics'}">Electronics</option>
+                            <option value="Clothing" th:selected="${param.category == 'Clothing'}">Clothing</option>
+                            <option value="Jewelry" th:selected="${param.category == 'Jewelry'}">Jewelry</option>
+                            <option value="Bags" th:selected="${param.category == 'Bags'}">Bags</option>
+                            <option value="Books" th:selected="${param.category == 'Books'}">Books</option>
+                            <option value="Other" th:selected="${param.category == 'Other'}">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Type:</label>
+                        <select name="type" class="form-control">
+                            <option value="Both" th:selected="${param.type == 'Both'}">Both</option>
+                            <option value="Lost" th:selected="${param.type == 'Lost'}">Lost Only</option>
+                            <option value="Found" th:selected="${param.type == 'Found'}">Found Only</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="button button-primary">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card" th:if="${lostResults != null || foundResults != null}">
+        <div class="card-header">Search Results</div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Item Name</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Location</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${(lostResults == null || lostResults.empty) && (foundResults == null || foundResults.empty)}">
+                        <td colspan="6" style="text-align: center; color: var(--text-muted); font-style: italic;">No results found.</td>
+                    </tr>
+                    
+                    <tr th:each="item : ${lostResults}">
+                        <td><span style="color: var(--danger); font-weight: bold;">Lost</span></td>
+                        <td th:text="${item.itemName}"></td>
+                        <td th:text="${item.category}"></td>
+                        <td th:text="${item.description}"></td>
+                        <td th:text="${item.location}"></td>
+                        <td th:text="${item.date}"></td>
+                    </tr>
+
+                    <tr th:each="item : ${foundResults}">
+                        <td><span style="color: var(--success); font-weight: bold;">Found</span></td>
+                        <td th:text="${item.itemName}"></td>
+                        <td th:text="${item.category}"></td>
+                        <td th:text="${item.description}"></td>
+                        <td th:text="${item.location}"></td>
+                        <td th:text="${item.date}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+services:
+  # The Web Service containing the Spring Boot application
+  - type: web
+    name: lost-and-found-web
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free # Use the free tier!
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        # Render will automatically map the connection string to this env var
+        fromDatabase:
+          name: lost-and-found-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: lost-and-found-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: lost-and-found-db
+          property: password
+    
+    # We mount a persistent disk to store the uploaded images!
+    # Without this, images disappear every time Render restarts the server.
+    disk:
+      name: uploads-disk
+      mountPath: /app/uploads
+      sizeGB: 1
+
+databases:
+  # The Managed PostgreSQL Database
+  - name: lost-and-found-db
+    plan: free # Free tier!
+    databaseName: lostfound
+    user: lostfound_user

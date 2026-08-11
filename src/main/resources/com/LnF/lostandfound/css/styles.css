@@ -1,0 +1,265 @@
+/* === Global Styles & CSS Variables === */
+.root {
+    -fx-font-family: "Inter", "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-base: #ffffff;
+    
+    /* Modern Light Theme Palette */
+    -fx-bg-color: #f3f4f6; /* Light gray background */
+    -fx-surface: #ffffff; /* Card backgrounds */
+    -fx-primary: #6366f1; /* Indigo primary */
+    -fx-primary-dark: #4f46e5;
+    -fx-primary-light: #818cf8;
+    
+    -fx-secondary: #ec4899; /* Pink secondary */
+    -fx-success: #10b981; /* Emerald */
+    -fx-warning: #f59e0b; /* Amber */
+    -fx-danger: #ef4444;  /* Red */
+    
+    -fx-text-main: #1f2937; /* Very dark gray */
+    -fx-text-muted: #6b7280; /* Gray */
+    -fx-border-color: #e5e7eb; /* Light border */
+    
+    -fx-background-color: -fx-bg-color;
+}
+
+/* Typography */
+.label {
+    -fx-text-fill: -fx-text-main;
+}
+
+/* === Main Navigation Bar === */
+.nav-bar {
+    -fx-background-color: -fx-surface;
+    -fx-padding: 12px 24px;
+    -fx-spacing: 15px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4);
+    -fx-border-color: -fx-border-color;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-muted;
+    -fx-font-weight: 600;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-transition: -fx-background-color 0.2s, -fx-text-fill 0.2s;
+}
+
+.nav-button:hover {
+    -fx-background-color: #f3f4f6;
+    -fx-text-fill: -fx-primary;
+}
+
+.nav-button:selected {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(99,102,241,0.3), 10, 0, 0, 4);
+}
+
+.nav-button:selected:hover {
+    -fx-background-color: -fx-primary-dark;
+}
+
+/* === Content Panes === */
+.content-pane {
+    -fx-padding: 30px;
+    -fx-background-color: transparent;
+}
+
+/* === TitledPanes (Cards) === */
+.titled-pane {
+    -fx-font-weight: 600;
+    -fx-text-fill: -fx-text-main;
+}
+
+.titled-pane > .title {
+    -fx-background-color: -fx-surface;
+    -fx-background-radius: 12px 12px 0 0;
+    -fx-padding: 15px 20px;
+    -fx-border-color: transparent;
+}
+
+.titled-pane > .content {
+    -fx-background-color: -fx-surface;
+    -fx-background-radius: 0 0 12px 12px;
+    -fx-padding: 24px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 15, 0, 0, 5);
+}
+
+.titled-pane:focused > .title {
+    -fx-color: transparent;
+}
+
+/* === Dashboard Stats Boxes === */
+.stat-box {
+    -fx-padding: 24px;
+    -fx-background-color: -fx-surface;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-border-width: 0;
+    -fx-alignment: CENTER;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 20, 0, 0, 6);
+    -fx-transition: -fx-scale-x 0.2s, -fx-scale-y 0.2s;
+}
+
+.stat-box:hover {
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.stat-box-lost { -fx-border-color: -fx-danger; -fx-border-width: 0 0 4px 0; }
+.stat-box-found { -fx-border-color: -fx-success; -fx-border-width: 0 0 4px 0; }
+.stat-box-match { -fx-border-color: -fx-warning; -fx-border-width: 0 0 4px 0; }
+
+.stat-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -fx-text-muted;
+}
+
+.stat-number {
+    -fx-font-size: 48px;
+    -fx-font-weight: 700;
+    -fx-padding: 10px 0;
+}
+.stat-number-lost { -fx-text-fill: -fx-danger; }
+.stat-number-found { -fx-text-fill: -fx-success; }
+.stat-number-match { -fx-text-fill: -fx-warning; }
+
+
+/* === Forms === */
+.form-grid {
+    -fx-hgap: 20px;
+    -fx-vgap: 20px;
+}
+.form-grid Label {
+    -fx-font-weight: 600;
+    -fx-text-fill: -fx-text-muted;
+    -fx-padding-top: 5px;
+}
+
+/* Form Inputs Styling */
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-background-color: #f9fafb;
+    -fx-border-color: -fx-border-color;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 12px;
+    -fx-font-size: 14px;
+    -fx-text-fill: -fx-text-main;
+}
+.text-area {
+    -fx-padding: 5px;
+}
+.text-field:focused, .text-area:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: -fx-primary;
+    -fx-border-width: 2px;
+    -fx-background-color: -fx-surface;
+    -fx-effect: dropshadow(three-pass-box, rgba(99,102,241,0.2), 5, 0, 0, 0);
+}
+.combo-box .list-cell {
+    -fx-font-size: 14px;
+}
+.combo-box-popup .list-view {
+    -fx-background-color: -fx-surface;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: -fx-border-color;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
+
+/* === Buttons === */
+.button {
+    -fx-background-color: -fx-surface;
+    -fx-border-color: -fx-border-color;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-text-fill: -fx-text-main;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 4, 0, 0, 1);
+    -fx-transition: -fx-scale-x 0.1s, -fx-scale-y 0.1s, -fx-background-color 0.2s;
+}
+.button:hover {
+    -fx-background-color: #f9fafb;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+.button:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* --- Primary Button --- */
+.button-primary {
+    -fx-background-color: linear-gradient(to right bottom, -fx-primary, -fx-primary-light);
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(99,102,241,0.4), 8, 0, 0, 3);
+}
+.button-primary:hover {
+    -fx-background-color: linear-gradient(to right bottom, -fx-primary-dark, -fx-primary);
+}
+
+/* --- Danger Button --- */
+.button-danger {
+    -fx-background-color: -fx-danger;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(239,68,68,0.4), 8, 0, 0, 3);
+}
+.button-danger:hover {
+    -fx-background-color: #dc2626; 
+}
+
+/* === Table View === */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+.table-view .column-header-background {
+    -fx-background-color: #f9fafb;
+    -fx-background-radius: 8px 8px 0 0;
+    -fx-border-color: -fx-border-color;
+    -fx-border-width: 0 0 1px 0;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-font-weight: 600;
+    -fx-font-size: 13px;
+    -fx-padding: 12px;
+    -fx-text-fill: -fx-text-muted;
+}
+.table-view .table-cell {
+    -fx-padding: 14px 12px;
+    -fx-border-color: transparent transparent #f3f4f6 transparent;
+    -fx-border-width: 0 0 1px 0;
+    -fx-text-fill: -fx-text-main;
+}
+.table-view .table-row-cell {
+    -fx-background-color: -fx-surface;
+}
+.table-view .table-row-cell:hover {
+    -fx-background-color: #f9fafb;
+}
+.table-view .table-row-cell:selected {
+    -fx-background-color: #e0e7ff; /* light indigo */
+    -fx-text-fill: -fx-primary-dark;
+}
+.table-view .table-row-cell:selected .table-cell {
+    -fx-text-fill: -fx-primary-dark;
+}
+.table-view .placeholder {
+    -fx-font-style: italic;
+    -fx-text-fill: -fx-text-muted;
+    -fx-font-size: 14px;
+}
