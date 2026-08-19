@@ -126,8 +126,6 @@ The easiest way to run the application locally is by using **Docker**. This will
 
 ---
 
-## 📸 Screenshots
-*(Add your beautiful screenshots here by dragging and dropping them into the README editor on GitHub!)*
 
 ---
 
