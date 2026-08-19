@@ -134,6 +134,3 @@ The easiest way to run the application locally is by using **Docker**. This will
 ## 🤝 Contributing
 Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/Pranav12-karhale/Lost-Found/issues).
 
-<div align="center">
-  <p>Made with ❤️ by Pranav</p>
-</div>
